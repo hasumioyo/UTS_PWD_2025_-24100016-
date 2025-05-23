@@ -72,10 +72,14 @@ section {
 }
    
 .search-section .search-form{
-    align-items: center;
-    display: block;
-    margin: auto;
+    display: inline-flex;
+    gap: 15px;
+}
 
+
+.search-form #category{
+    color: var(--text);
+    size: 30px;
 }
 
 .search-section input {
@@ -104,49 +108,71 @@ section {
     display: grid;
     grid-template-columns:repeat(auto-fit, minmax(20px, 1fr));
     gap: 50px;
-    margin-top: 30px;
+    margin-top: -30px;
 }
 
 .features .feature-box{
     padding: 50px 50px;
-    text-align: center;
+    align-items: center;
     background-color: var(--other);
     border-radius: 10px;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+    gap: 5%;
+    line-height: 1.5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
 }
 
 .features .feature-box i{
     font-size: 2.5rem;
     color: var(--accent);
-    margin-bottom: 90px;
+    margin-top: -20px;
 }
 
 .features .feature-box h3{
     font-size: 23px;
-    margin-top: -80px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    text-align: center; 
+    
 }
 
 .features .feature-box p{
-    line-height: normal;
+    margin-top: 10px;
+    width: 210px;
+    height: auto;
+    text-align: center;
+    line-height: 28px;
+    
 }
 
 .cta{
     background-color: var(--primary);
-    text-align: center;
-    margin: auto;
+    align-items: center;
     padding: 120px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    line-height: 1.3;
+    width: auto;
 }
 
 .cta h2{
     font-size: 2rem;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
+.cta p{
+    width: 50%;
+    margin: auto;
+    line-height: 25px;
+    padding-bottom: 20px;
+
+}
 
 footer{
     padding-top: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     background-color: var(--accent);
     text-align: center;
     color: white;
