@@ -69,6 +69,7 @@ section {
 .search-section h2{
     font-size: 2rem;
     margin-bottom: 20px;
+    /* border: 1px solid black; */
 }
    
 .search-section .search-form{
@@ -106,7 +107,7 @@ section {
 .features{
     max-width: 1000px;
     display: grid;
-    grid-template-columns:repeat(auto-fit, minmax(20px, 1fr));
+    grid-template-columns:repeat(auto-fit, minmax(20px, 0.35fr));
     gap: 50px;
     margin-top: -30px;
 }
@@ -119,10 +120,17 @@ section {
     display: flex;
     flex-direction: column;
     max-width: fit-content;
-    gap: 5%;
+    /* gap: 5%; */
     line-height: 1.5;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    transition: 0.2s ease;
     
+}
+
+.features .feature-box:hover {
+    transition: 0.2s ease;
+    transform: scale(1.05);
 }
 
 .features .feature-box i{
@@ -167,6 +175,7 @@ section {
     margin: auto;
     line-height: 25px;
     padding-bottom: 20px;
+    /* border: 1px solid black; */
 
 }
 

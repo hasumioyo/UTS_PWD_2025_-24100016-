@@ -19,14 +19,15 @@
     <form class="search-form">
       <input type="text" placeholder="Masukkan lokasi (contoh: Jakarta)" />
       <select id="category">
-        <option selected disabled>Pilih Kategori</option>
+        <option value="" selected disabled>Pilih Kategori</option>
         <option>Wedding</option>
         <option>Photoshoot</option>
         <option>Graduation</option>
         <option>Daily Look</option>
       </select>
-      <button type="submit">Cari Sekarang</button>
+      <button type="submit" onclick="doublefill()">Cari Sekarang</button>
     </form>
+    <!-- <div id="new-info-type"></div> -->
   </section>
   <section class="features">
     <div class="feature-box">
@@ -55,5 +56,139 @@
   <footer>
     <p>&copy; 2025 GlowUp</p>
   </footer>
+
+  <script>
+    const locationInput = document.querySelector('input[type=text]');
+    const categoriesOption = document.getElementById("category");
+    const locationOutput = document.createElement('div');
+    const searchForm = document.querySelector('.search-form');
+
+    locationOutput.style.marginTop = '10px';
+    locationOutput.style.color = '#d04894';
+    document.querySelector('.search-form').appendChild(locationOutput);
+
+
+    locationInput.addEventListener('input', () => { //
+      locationOutput.textContent =locationInput.value.trim() //to remove extra spaces
+        ? `Lokasi yang diketik : ${locationInput.value}` : '';
+    });
+
+     function doublefill() {
+      if (locationInput.value === '' && categoriesOption.value === "") {
+         alert("Harap masukan lokasi dan kategorinya!")
+       }
+      else {  
+        searchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          appearance();
+        })
+        alert (`Mencari MUA di ${locationInput.value}, kategori ${categoriesOption.value}`);
+       }
+     }
+
+     function appearance() {
+        let pe = document.querySelector('.search-section p')
+        if (!pe) {
+          pe = document.createElement('p');
+          pe.style.marginTop = '20px';
+          document.querySelector('.search-section').appendChild(pe);
+        }
+        pe.innerHTML = `Hasil pencarian untuk ${locationInput.value} - ${categoriesOption.value}`;
+        filterMUA(categoriesOption.value);
+     }
+
+
+     const features = document.querySelector('.features');
+     
+     function addMUA(name, desc) {
+       const div = document.createElement('div');
+       div.className = 'feature-box';
+       
+       const ie = document.createElement('i');
+       if (ie.className === ""){
+         ie.className = `fas fa-user`;
+         div.appendChild(ie);
+        }
+        
+        const he3 = document.createElement('h3');
+        const pe = document.createElement('p');
+        if (he3.innerHTML === "" && pe.innerHTML === ""){
+          he3.innerHTML = `${name}`;
+          pe.innerHTML = `${desc}`;
+          div.appendChild(he3);
+          div.appendChild(pe);
+        }
+        
+        let counting = div.childElementCount; //menghitung anak-anak
+        if (counting === 3){
+          features.appendChild(div).style.margin= "0px 0px 0px 0px";
+        }
+    }
+    
+    // addMUA("Nabila", "Graduation");
+    // addMUA("Angel", "Wedding"); 
+    // addMUA("Merry", "Daily Look");
+    
+    // VERSI KELAS PWD 
+    const MUA_LIST = [
+      {name: 'Nabi Bridal', category: 'Wedding'},
+      {name: 'Meri Studio', category: 'Photoshoot'},
+      {name: 'Karolina Makeover', category: 'Graduation'},
+      {name: 'JOBI TEAM', category: 'Daily Look'},
+      {name: 'Merry', category: 'Photoshoot'},
+      // {name: 'Lukas', category: 'Photoshoot'}
+    ];
+    
+
+    
+    function filterMUA(kategori) {
+      features.innerHTML = "";
+      MUA_LIST.filter((mua) => mua.category === kategori).forEach((mua) => {addMUA(mua.name, `kategori: ${mua.category}`);
+      });
+      
+      features.addEventListener('mouseover', e => {
+        if (e.target.closest('.feature-box')) {
+          e.target.closest('.feature-box').style.transform ='scale(1.05)';
+        }
+      });
+      
+      features.addEventListener('mouseout', e => {
+      if (e.target.closest('.feature-box')) {
+        e.target.closest('.feature-box').style.transform ='scale(1)';
+      }
+    });
+  }
+
+
+  // VERSI KELAS PWD 
+  // const categorySelect = document.getElementById("category");
+  // searchForm.addEventListener('submit', function(e) {
+    //   e.preventDefault();
+    //   if (!locationInput.value.trim() || !categorySelect.value) {
+      //     alert('Harap isi lokasi dan pilih categori.');
+      //   }
+      //   else {
+        //     alert(`Mencari MUA di ${locationInput.value}, kategori ${categorySelect.value}`);
+        //   }
+        // });
+
+        //  function addMUA(name, desc) {
+         //    const div = document.createElement('div');
+         //    div.className = 'feature-box';
+       //    div.innerHTML = `<i class= "fas fa-user"></i><h3>${name}</h3><p>${desc}</p>`;
+       //    features.appendChild(div);
+       //  }
+        
+        // const resultBox = document.createElement('div');
+        // resultBox.style.marginTop = '20px';
+        // searchForm.appendChild(resultBox);
+        // searchForm.addEventListener('submit', function(e) {
+  //   e.preventDefault(); //blok
+  //   if (locationInput.value.trim() && categorySelect.value) {
+  //     resultBox.textContent = `Hasil pencarian untuk ${locationInput.value} - ${categorySelect.value}`;
+  //   }
+  // });
+
+</script>
 </body>
 </html>
